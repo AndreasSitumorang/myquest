@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model weather {
+  city    String?   @db.VarChar(80)
+  temp_lo Int?
+  temp_hi Int?
+  prcp    Float?    @db.Real
+  date    DateTime? @db.Date
+
+  @@ignore
+}
